@@ -8,6 +8,7 @@ import smtplib
 from time import sleep
 from validators import url
 
+#Função que valida que o valor inserido é válido
 def valida_preco(n):
     if not n.isdigit():
         try:
@@ -21,11 +22,13 @@ def valida_preco(n):
         return True
 
 URL = input("Cole o link\n")
-while not url(URL):
+
+while not url(URL):                 #Verifica se o link é válido
     print('Email inválido')
     URL = input("Cole o link\n")
 
 valor = input('Insira o preço alvo: ')
+
 while not valida_preco(valor):
     print('\nO valor inserido é inválido!')
     valor = input('Insira o preço alvo: ')
@@ -35,6 +38,7 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36 OPR/62.0.3331.18'
 }
 
+#função que checa se o valor foi atualizado
 def check_price(URL):
     page = requests.get(URL, headers=headers)
 
@@ -50,6 +54,7 @@ def check_price(URL):
     if converted_price < valor:
         send_mail()
 
+#função que envia para o email
 def send_mail():
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
@@ -70,6 +75,7 @@ def send_mail():
     )
     print("Email enviado com sucesso!")
 
+#checa o preço infinitamente
 while True:
     check_price(URL)
-    sleep(600)
+    sleep(600)          #10 minutos para rodar o while novamente
