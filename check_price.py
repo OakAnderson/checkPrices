@@ -44,7 +44,6 @@ def check_price(URL):
 
     soup = BeautifulSoup(page.content, 'html.parser')
 
-    title = soup.find(attrs="product-name").get_text()
     price  = soup.find(attrs="price").get_text()
     converted_price = price.strip().split(',')[0][3:]
     converted_price = float(''.join(converted_price.split('.')))
