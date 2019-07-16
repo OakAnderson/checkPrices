@@ -29,10 +29,10 @@ while not url(URL):                 #Verifica se o link é válido
 
 valor = input('Insira o preço alvo: ')
 
+# Verifica se o valor digitado é valido
 while not valida_preco(valor):
     print('\nO valor inserido é inválido!')
     valor = input('Insira o preço alvo: ')
-valor = float(valor)
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36 OPR/62.0.3331.18'
